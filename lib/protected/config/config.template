@@ -1,0 +1,31 @@
+<?php
+return array(
+    'components'=>array(
+        //Database of Magento1
+        'mage1' => array(
+            'connectionString' => 'mysql:host={MG1_HOST};dbname={MG1_DB_NAME}',
+            'emulatePrepare' => true,
+            'username' => '{MG1_DB_USER}',
+            'password' => '{MG1_DB_PASS}',
+            'charset' => 'utf8',
+            'tablePrefix' => '{MG1_DB_PREFIX}',
+            'class' => 'CDbConnection'
+        ),
+        //Database of Magento2 beta
+        'mage2' => array(
+            'connectionString' => 'mysql:host={MG2_HOST};dbname={MG2_DB_NAME}',
+            'emulatePrepare' => true,
+            'username' => '{MG2_DB_USER}',
+            'password' => '{MG2_DB_PASS}',
+            'charset' => 'utf8',
+            'tablePrefix' => '{MG2_DB_PREFIX}',
+            'class' => 'CDbConnection'
+        )
+    ),
+
+    'import'=>array(
+        //This can change for your magento1 version if needed
+        //'application.models.db.{MG1_VERSION}.*',
+        'application.models.db.mage19x.*',
+    )
+);

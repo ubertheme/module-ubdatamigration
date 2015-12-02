@@ -1,0 +1,18 @@
+
+# Need to update upgrade beta 1.0.0 -> CE 2.0.0 #
+
+### Tables/Models need to update: ###
++ catalog_eav_attribute
++ catalog_product_entity_media_gallery
++ catalog_product_entity_media_gallery_value
++ catalog_product_entity_media_gallery_value_to_entity (NEW)
++ catalog_product_entity_media_gallery_value_video (NEW)
++ customer_eav_attribute
+
++ sales_order
++ quote_address
++ sales_order_payment
+
+### Tables removed ###
++ catalog_product_entity_group_price
++ catalog_product_index_group_price
