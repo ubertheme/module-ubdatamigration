@@ -20,7 +20,7 @@
 - Install via Composer by command:
     `composer require ubertheme/module-ubdatamigration`
 - Enable the module in terminal window by commands:
-    + `php -f PATH_YOUR_MAGENTO_2/bin/magento module:enable Ubertheme_Ubdatamigration`
+    + `php -f PATH_YOUR_MAGENTO_2/bin/magento module:enable --clear-static-content Ubertheme_Ubdatamigration`
     + `php -f PATH_YOUR_MAGENTO_2/bin/magento setup:upgrade`
 - Make write permission for `pub` folder at path `PATH_YOUR_MAGENTO_2/pub`
 
