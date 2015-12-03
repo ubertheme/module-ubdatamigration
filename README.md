@@ -16,36 +16,36 @@
 ### Author: [UberTheme](http://www.ubertheme.com)
 
 ### How To Install:
-    ** 1 - Install via Composer by command:**
+    1 - Install via Composer by command:
         `composer require ubertheme_ubdatamigration 1.0.0`
-    ** 2- Enable the module in terminal window by commands: **
+    2- Enable the module in terminal window by commands:
         + `php -f PATH_YOUR_MAGENTO_2/bin/magento module:enable Ubertheme_Ubdatamigration`
         + `php -f PATH_YOUR_MAGENTO_2/bin/magento setup:upgrade`
-    ** 3- Make write permission for `pub` folder at path `PATH_YOUR_MAGENTO_2/pub` **
+    3- Make write permission for `pub` folder at path `PATH_YOUR_MAGENTO_2/pub`
 
 ### How To Use:
 
 #### 1 - Follow step by step by UI of this module as bellow screenshots:
-    ![Step 1](http://i.imgur.com/aRkl3jJ.png)
+![Step 1](http://i.imgur.com/aRkl3jJ.png)
 
-    ![Step 2](http://i.imgur.com/LzVdz8o.png)
+![Step 2](http://i.imgur.com/LzVdz8o.png)
 
-    ![Step 3](http://i.imgur.com/hkalWf2.png)
+![Step 3](http://i.imgur.com/hkalWf2.png)
 
-    ![Step 4](http://i.imgur.com/ZwWqSyE.png)
+![Step 4](http://i.imgur.com/ZwWqSyE.png)
 
-    ![Step 5](http://i.imgur.com/wA5vmk0.png)
+![Step 5](http://i.imgur.com/wA5vmk0.png)
 
-    ![Step 6](http://i.imgur.com/wiz64NQ.png)
+![Step 6](http://i.imgur.com/wiz64NQ.png)
 
-    ![Step 7](http://i.imgur.com/dKItNy9.png)
+![Step 7](http://i.imgur.com/dKItNy9.png)
 
-    ![Step 8](http://i.imgur.com/UBLb63y.png)
+![Step 8](http://i.imgur.com/UBLb63y.png)
 
-    ![Step 9](http://i.imgur.com/LwG3FwA.png)
+![Step 9](http://i.imgur.com/LwG3FwA.png)
 
 #### 2 - Finish (_required_)
-    ** To finish the data migration from Magento 1 to Magento 2, you have to do some tasks bellow: **
+    To finish the data migration from Magento 1 to Magento 2, you have to do some tasks bellow:
     + Copy media files
         - Copy the folder at PATH_YOUR_MAGENTO_1\media\catalog and paste replace to PATH_YOUR_MAGENTO_2\pub\media\
         - Copy the folder at PATH_YOUR_MAGENTO_1\media\downloadable and paste replace to PATH_YOUR_MAGENTO_2\pub\media\
