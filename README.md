@@ -2,14 +2,14 @@
 >This is a Magento 2 module, allows migrate some important data from Magento 1.x to Magento 2.x
 
 ### Allow Features:
-    + [x] Migrate Web sites, Stores, Store views
-    + [x] Migrate Attribute Sets, Attribute Groups, Attributes
-    + [x] Migrate Categories
-    + [x] Migrate Products
-    + [x] Migrate Customers
-    + [x] Migrate Sales Data: Sales Orders, Sales Invoices, Sales Shipments... 
-    + [x] Migrate Product Reviews, Ratings data
-    + [x] ...
++ [x] Migrate Web sites, Stores, Store views
++ [x] Migrate Attribute Sets, Attribute Groups, Attributes
++ [x] Migrate Categories
++ [x] Migrate Products
++ [x] Migrate Customers
++ [x] Migrate Sales Data: Sales Orders, Sales Invoices, Sales Shipments... 
++ [x] Migrate Product Reviews, Ratings data
++ [-] ...
 ### Compatible:
     + Magento CE 1.x: 1.6.x, 1.7.x, 1.8.x, 1.9.x
     + Magento 2 CE 2.0.0 and later
