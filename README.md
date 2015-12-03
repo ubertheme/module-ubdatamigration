@@ -19,9 +19,13 @@
 ### How To Install:
 - Install via Composer by command:
     `composer require ubertheme/module-ubdatamigration`
+- Example: 
+![load module](http://i.prntscr.com/adb0c005b4e141088bd96c1c61d9f7c7.png)
 - Enable the module in terminal window by commands:
-    + `php -f PATH_YOUR_MAGENTO_2/bin/magento module:enable Ubertheme_Ubdatamigration`
+    + `php -f PATH_YOUR_MAGENTO_2/bin/magento module:enable --clear-static-content Ubertheme_Ubdatamigration`
     + `php -f PATH_YOUR_MAGENTO_2/bin/magento setup:upgrade`
+- Examples:
+![enable module](http://i.imgur.com/ksW98w8.png)
 - Make write permission for `pub` folder at path `PATH_YOUR_MAGENTO_2/pub`
 
 ### How To Use:
@@ -58,9 +62,10 @@
 
 + Re-Index the data in Terminal window by command:
     `php -f PATH_YOUR_MAGENTO_2/bin/magento indexer:reindex`
-
+![reindex data](http://i.imgur.com/Fvm2GpQ.png)
 + Clean Magento 2 cache by command
     `php -f PATH_YOUR_MAGENTO_2/bin/magento cache:flush`
+![flush cache](http://i.imgur.com/VVweYQ8.png)
 
 ### 3 - Let’s discover Magento 2 with your data migrated by URL:
     http://your_magento2_url/
