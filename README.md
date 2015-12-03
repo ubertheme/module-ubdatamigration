@@ -16,6 +16,11 @@
     + Magento 2 CE 2.0.0 and later
 ### Author: [UberTheme](http://www.ubertheme.com)
 
+### Prepare (precondition):
+    Install a Magento 2 fresh website (without data sample)
+    Download Magento Community Edition 2.0 from below link: https://www.magentocommerce.com/download
+    Follow Installation guide to Install a Magento 2 fresh website
+
 ### How To Install:
 - Install via Composer by command:
     `composer require ubertheme/module-ubdatamigration`
