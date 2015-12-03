@@ -45,21 +45,21 @@
 ![Step 9](http://i.imgur.com/LwG3FwA.png)
 
 #### 2 - Finish (_required_)
-    To finish the data migration from Magento 1 to Magento 2, you have to do some tasks bellow:
-    + Copy media files
-        - Copy the folder at PATH_YOUR_MAGENTO_1\media\catalog and paste replace to PATH_YOUR_MAGENTO_2\pub\media\
-        - Copy the folder at PATH_YOUR_MAGENTO_1\media\downloadable and paste replace to PATH_YOUR_MAGENTO_2\pub\media\
-        - Make recursive write permission to "catalog" and "downloadable" folders which you have just copied.
+**To finish the data migration from Magento 1 to Magento 2, you have to do some tasks bellow:**
++ Copy media files
+    - Copy the folder at PATH_YOUR_MAGENTO_1\media\catalog and paste replace to PATH_YOUR_MAGENTO_2\pub\media\
+    - Copy the folder at PATH_YOUR_MAGENTO_1\media\downloadable and paste replace to PATH_YOUR_MAGENTO_2\pub\media\
+    - Make recursive write permission to "catalog" and "downloadable" folders which you have just copied.
 
-    + Re-save all the Attribute Sets migrated:
-        In backend of your Magento 2 go to Stores/Attributes/Attribute menu navigation. 
-        Open the Attribute Set, edit information of it if needed and click the save button
++ Re-save all the Attribute Sets migrated:
+    In backend of your Magento 2 go to Stores/Attributes/Attribute menu navigation. 
+    Open the Attribute Set, edit information of it if needed and click the save button
 
-    + Re-Index the data in Terminal window by command:
-        `php -f PATH_YOUR_MAGENTO_2/bin/magento indexer:reindex`
++ Re-Index the data in Terminal window by command:
+    `php -f PATH_YOUR_MAGENTO_2/bin/magento indexer:reindex`
 
-    + Clean Magento 2 cache by command
-        `php -f PATH_YOUR_MAGENTO_2/bin/magento cache:flush`
++ Clean Magento 2 cache by command
+    `php -f PATH_YOUR_MAGENTO_2/bin/magento cache:flush`
 
 ### 3 - Let’s discover Magento 2 with your data migrated by URL:
     http://your_magento2_url/
