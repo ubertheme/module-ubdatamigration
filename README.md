@@ -4,5 +4,5 @@
 
 ### How to install
 coming soon...
-## How to use
+### How to use
 coming soon...

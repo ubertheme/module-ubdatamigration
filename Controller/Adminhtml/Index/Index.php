@@ -4,12 +4,13 @@ namespace Ubertheme\Ubdatamigration\Controller\Adminhtml\Index;
 
 use Magento\Framework\App\Filesystem\DirectoryList;
 
-class Index extends \Ubertheme\Ubdatamigration\Controller\Adminhtml\Index
+class Index extends \Magento\Backend\App\Action
 {
     /**
      * @var \Magento\Framework\View\Result\PageFactory
      */
     protected $resultPageFactory;
+    
 
     /**
      * @param \Magento\Backend\App\Action\Context $context
@@ -21,6 +22,16 @@ class Index extends \Ubertheme\Ubdatamigration\Controller\Adminhtml\Index
     ) {
         parent::__construct($context);
         $this->resultPageFactory = $resultPageFactory;
+    }
+    
+    /**
+     * Check for is allowed
+     *
+     * @return boolean
+     */
+    protected function _isAllowed()
+    {
+        return $this->_authorization->isAllowed('Ubertheme_Ubdatamigration::index');
     }
 
     /**

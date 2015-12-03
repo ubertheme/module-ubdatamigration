@@ -28,7 +28,7 @@
             Copyright &copy; <?php echo date('Y'); ?> by <a href="http://www.ubertheme.com/" target="_blank">UberTheme</a>.<br/>
             All Rights Reserved.<br/>
             <?php echo Yii::powered(); ?>
-            <div id="report-bugs"><a target="_blank" href="https://bitbucket.org/ubertheme/module-ubdatamigration/issues" title="<?php echo Yii::t('frontend', 'Report Bugs')?>"><?php echo Yii::t('frontend', 'Report Bugs')?></a></div>
+            <div id="report-bugs"><a target="_blank" href="https://github.com/ubertheme/module-ubdatamigration/issues" title="<?php echo Yii::t('frontend', 'Report Bugs')?>"><?php echo Yii::t('frontend', 'Report Bugs')?></a></div>
         </div><!-- footer -->
     </div>
 </div><!-- page -->
