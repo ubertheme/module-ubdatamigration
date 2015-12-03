@@ -16,12 +16,12 @@
 ### Author: [UberTheme](http://www.ubertheme.com)
 
 ### How To Install:
-    1 - Install via Composer by command:
-        `composer require ubertheme_ubdatamigration 1.0.0`
-    2- Enable the module in terminal window by commands:
-        + `php -f PATH_YOUR_MAGENTO_2/bin/magento module:enable Ubertheme_Ubdatamigration`
-        + `php -f PATH_YOUR_MAGENTO_2/bin/magento setup:upgrade`
-    3- Make write permission for `pub` folder at path `PATH_YOUR_MAGENTO_2/pub`
+- Install via Composer by command:
+    `composer require ubertheme_ubdatamigration`
+- Enable the module in terminal window by commands:
+    + `php -f PATH_YOUR_MAGENTO_2/bin/magento module:enable Ubertheme_Ubdatamigration`
+    + `php -f PATH_YOUR_MAGENTO_2/bin/magento setup:upgrade`
+- Make write permission for `pub` folder at path `PATH_YOUR_MAGENTO_2/pub`
 
 ### How To Use:
 
