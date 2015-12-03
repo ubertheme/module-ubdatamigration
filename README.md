@@ -10,6 +10,7 @@
 + [x] Migrate Sales Data: Sales Orders, Sales Invoices, Sales Shipments... 
 + [x] Migrate Product Reviews, Ratings data
 + [-] ...
+
 ### Compatible:
     + Magento CE 1.x: 1.6.x, 1.7.x, 1.8.x, 1.9.x
     + Magento 2 CE 2.0.0 and later
