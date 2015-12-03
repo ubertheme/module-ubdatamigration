@@ -18,7 +18,7 @@
 
 ### How To Install:
 - Install via Composer by command:
-    `composer require ubertheme_ubdatamigration 1.0.0`
+    `composer require ubertheme/module-ubdatamigration`
 - Enable the module in terminal window by commands:
     + `php -f PATH_YOUR_MAGENTO_2/bin/magento module:enable Ubertheme_Ubdatamigration`
     + `php -f PATH_YOUR_MAGENTO_2/bin/magento setup:upgrade`
