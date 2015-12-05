@@ -38,14 +38,16 @@ class Index extends \Magento\Backend\App\Action
      * @return \Magento\Backend\Model\View\Result\Page
      */
     public function execute(){
-        //we will save souce of this lib at pub folder
-        $pubDir = $this->_objectManager->get('Magento\Framework\Filesystem')->getDirectoryRead(DirectoryList::PUB);
-        $toolDir = $pubDir->getAbsolutePath('ub-tool/');
-        if (!file_exists($toolDir.'index.php')){
-            $reader = $this->_objectManager->get('Magento\Framework\Module\Dir\Reader');
-            $sourceDir = $reader->getModuleDir('', 'Ubertheme_Ubdatamigration').'/lib';
+        $reader = $this->_objectManager->get('Magento\Framework\Module\Dir\Reader');
+        $sourceDir = $reader->getModuleDir('', 'Ubertheme_Ubdatamigration').'/lib/';
+        if (file_exists($sourceDir.'update.flag')){
+            //we will update/save souce of this lib at pub folder
+            $pubDir = $this->_objectManager->get('Magento\Framework\Filesystem')->getDirectoryRead(DirectoryList::PUB);
+            $toolDir = $pubDir->getAbsolutePath('ub-tool/');
             $helper = $this->_objectManager->get('Ubertheme\Ubdatamigration\Helper\File');
             $helper->xcopy($sourceDir, $toolDir, 0775);
+            //removre flag update code
+            unlink($sourceDir.'update.flag');
         }
         
         /** @var \Magento\Backend\Model\View\Result\Page $resultPage */
