@@ -1358,16 +1358,20 @@ class MigrateController extends Controller
                                                     }
                                                     if ($model2->save()){
                                                         //cataloginventory_stock_item
-                                                        $stock_item = Mage1StockItem::model()->find("product_id = {$model->product_id} AND stock_id = {$model->stock_id}");
-                                                        if ($stock_item){
-                                                            $stock_item2 = new Mage2StockItem();
-                                                            foreach ($stock_item2->attributes as $key => $value){
-                                                                if ($key != 'item_id' && isset($stock_item->$key)){
-                                                                    $stock_item2->$key = $stock_item->$key;
+                                                        $stock_item2 = Mage2StockItem::model()->find("product_id = {$model->product_id} AND stock_id = {$model->stock_id}");
+                                                        if (!$stock_item2){
+                                                            $stock_item = Mage1StockItem::model()->find("product_id = {$model->product_id} AND stock_id = {$model->stock_id}");
+                                                            if ($stock_item){
+                                                                $stock_item2 = new Mage2StockItem();
+                                                                foreach ($stock_item2->attributes as $key => $value){
+                                                                    if ($key != 'item_id' && isset($stock_item->$key)){
+                                                                        $stock_item2->$key = $stock_item->$key;
+                                                                    }
                                                                 }
+                                                                //this field is new in Magento 2
+                                                                $stock_item2->website_id = $website_id;
+                                                                $stock_item2->save();
                                                             }
-                                                            $stock_item2->website_id = $website_id;
-                                                            $stock_item2->save();
                                                         }
                                                     }
                                                 }
