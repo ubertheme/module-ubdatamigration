@@ -67,10 +67,15 @@ Follow [Installation guide](http://devdocs.magento.com/guides/v2.0/install-gde/i
 
 + Re-Index the data in Terminal window by command:
     `php -f PATH_YOUR_MAGENTO_2/bin/magento indexer:reindex`
-![reindex data](http://i.imgur.com/Fvm2GpQ.png)
+![reindex data](http://i.imgur.com/0rds1GB.png)
+
 + Clean Magento 2 cache by command
     `php -f PATH_YOUR_MAGENTO_2/bin/magento cache:flush`
-![flush cache](http://i.imgur.com/VVweYQ8.png)
+![flush cache](http://i.imgur.com/pKSs0Eh.png)
+
++ Upgrade Password Hash (__This is optional task for more security__)
+    `php -f PATH_YOUR_MAGENTO_2/bin/magento customer:hash:upgrade`
+![upgrade customer password_hash](http://i.imgur.com/wSkhljs.png)
 
 ### 3 - Let’s discover Magento 2 with your data migrated by URL:
     http://your_magento2_url/
