@@ -105,30 +105,28 @@ class MigrateController extends Controller
 
             $step->migrated_data = json_encode($_POST);
 
-            //validate database
+            //validate databases
+            mysqli_report(MYSQLI_REPORT_STRICT);
             $err_msg = array();
-            $validate = @mysql_connect($_POST['mg1_host'], $_POST['mg1_db_user'], $_POST['mg1_db_pass']);
-            if (!$validate){
-                $err_msg[] = Yii::t('frontend', "Couldn't connected to Magento 1 database.");
-            }else{
-                if (!mysql_select_db( $_POST['mg1_db_name'], $validate)){
-                    $err_msg[] = Yii::t('frontend', "Database Name of Magento 1 was not found in database.");
-                    $validate = false;
-                }else{
-                    //validate magento2
-                    mysql_close($validate);
-                    $validate = @mysql_connect($_POST['mg2_host'], $_POST['mg2_db_user'], $_POST['mg2_db_pass']);
-                    if (!$validate){
-                        $err_msg[] = Yii::t('frontend', "Couldn't connected to Magento 2 database.");
-                    }else{
-                        if (!mysql_select_db( $_POST['mg2_db_name'], $validate)){
-                            $err_msg[] = Yii::t('frontend', "Database Name of Magento 2 was not found in database.");
-                            $validate = false;
-                        } else{
-                            mysql_close($validate);
-                        }
+            $validate = true;
+            //validate magento1 database
+            try {
+                $connection = mysqli_connect($_POST['mg1_host'], $_POST['mg1_db_user'], $_POST['mg1_db_pass'], $_POST['mg1_db_name']);
+                if ($connection) {
+                    //validate magento2 database
+                    try {
+                        $connection = mysqli_connect($_POST['mg2_host'], $_POST['mg2_db_user'], $_POST['mg2_db_pass'], $_POST['mg2_db_name']);
+                    } catch (Exception $e ) {
+                        $err_msg[] = Yii::t('frontend', "Couldn't connected to Magento 2 database: ".$e->getMessage());
+                        $validate = false;
                     }
                 }
+            } catch ( Exception $e ) {
+                $err_msg[] = Yii::t('frontend', "Couldn't connected to Magento 1 database: ".$e->getMessage());
+                $validate = false;
+            }
+            if (isset($connection) AND $connection){
+                mysqli_close($connection);
             }
 
             if ($validate){
@@ -1963,6 +1961,10 @@ class MigrateController extends Controller
                                                             if (in_array($attribute_code1, $needed_update_attr)){
                                                                 if ($customer2->hasAttribute($attribute_code1)){
                                                                     $customer2->$attribute_code1 = $model->value;
+                                                                    //we have to do this, because the Magento CE 2.0.0 or later was change method to hash password: md5 -> sha256
+                                                                    if ($attribute_code1 == 'password_hash'){
+                                                                        $customer2->$attribute_code1 .= ":0"; // In Magento2: 0 = HASH_VERSION_MD5
+                                                                    }
                                                                     $customer2->update();
                                                                 }
                                                             }
