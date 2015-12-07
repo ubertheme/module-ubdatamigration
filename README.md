@@ -22,11 +22,11 @@ Download Magento Community Edition 2.0 from below link: https://www.magentocomme
 Follow [Installation guide](http://devdocs.magento.com/guides/v2.0/install-gde/install-quick-ref.html) to Install a Magento 2 fresh website
 
 ### How To Install:
-- Install via Composer: In your Terminal windown, go to your magento2 webroot folder and run bellow command:
+- Install via Composer: In your terminal window, go to your magento2 webroot folder and run bellow command:
     `composer require ubertheme/module-ubdatamigration`
 - Example: 
 ![load module](http://i.prntscr.com/adb0c005b4e141088bd96c1c61d9f7c7.png)
-- Enable the module in terminal window by commands:
+- Enable the module: In your terminal window run bellow commands:
     + `php -f PATH_YOUR_MAGENTO_2/bin/magento module:enable --clear-static-content Ubertheme_Ubdatamigration`
     + `php -f PATH_YOUR_MAGENTO_2/bin/magento setup:upgrade`
 - Examples:
@@ -65,15 +65,15 @@ Follow [Installation guide](http://devdocs.magento.com/guides/v2.0/install-gde/i
     In backend of your Magento 2 go to Stores/Attributes/Attribute menu navigation. 
     Open the Attribute Set, edit information of it if needed and click the save button
 
-+ Re-Index the data in Terminal window by command:
++ Re-Index the data: In your terminal window run bellow command:
     `php -f PATH_YOUR_MAGENTO_2/bin/magento indexer:reindex`
 ![reindex data](http://i.imgur.com/0rds1GB.png)
 
-+ Clean Magento 2 cache by command
++ Clean Magento 2: In your terminal window run bellow command:
     `php -f PATH_YOUR_MAGENTO_2/bin/magento cache:flush`
 ![flush cache](http://i.imgur.com/pKSs0Eh.png)
 
-+ Upgrade Password Hash (__This is optional task for more security__)
++ Upgrade Password Hash (__This is optional task for more security__): In your terminal window run bellow command
     `php -f PATH_YOUR_MAGENTO_2/bin/magento customer:hash:upgrade`
 ![upgrade customer password_hash](http://i.imgur.com/wSkhljs.png)
 
