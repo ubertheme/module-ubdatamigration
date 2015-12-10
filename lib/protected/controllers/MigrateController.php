@@ -1791,6 +1791,7 @@ class MigrateController extends Controller
             $customer_groups = Mage1CustomerGroup::model()->findAll();
 
             //variables to log
+            $errors = array();
             $migrated_customer_group_ids = array();
             $migrated_customer_ids = array();
 
@@ -1837,10 +1838,19 @@ class MigrateController extends Controller
                             $needed_update_attr = array(
                                 'created_in',
                                 'firstname',
+                                'middlename',
                                 'lastname',
                                 'password_hash',
                                 'rp_token',
-                                'rp_token_created_at'
+                                'rp_token_created_at',
+                                'prefix',
+                                'suffix',
+                                'dob',
+                                'default_billing',
+                                'default_shipping',
+                                'taxvat',
+                                'confirmation',
+                                'gender'
                             );
 
                             $customers = Mage1CustomerEntity::model()->findAll("group_id = {$group_id}");
@@ -1882,6 +1892,8 @@ class MigrateController extends Controller
                                                                     $customer2->update();
                                                                 }
                                                             }
+                                                        } else {
+                                                            $errors[] = get_class($model2).": ".MigrateSteps::getStringErrors($model2->getErrors());
                                                         }
                                                     }
                                                 }
@@ -1900,7 +1912,18 @@ class MigrateController extends Controller
                                                             }
                                                         }
                                                         $model2->attribute_id = $attribute_id2;
-                                                        $model2->save();
+                                                        if ($model2->save()){
+                                                            //this only for Magento 2 from version 0.74.0 - beta 12
+                                                            $attribute_code1 = MigrateSteps::getMage1AttributeCode($model->attribute_id);
+                                                            if (in_array($attribute_code1, $needed_update_attr)){
+                                                                if ($customer2->hasAttribute($attribute_code1)){
+                                                                    $customer2->$attribute_code1 = $model->value;
+                                                                    $customer2->update();
+                                                                }
+                                                            }
+                                                        } else {
+                                                            $errors[] = get_class($model2).": ".MigrateSteps::getStringErrors($model2->getErrors());
+                                                        }
                                                     }
                                                 }
                                             }
@@ -1919,7 +1942,18 @@ class MigrateController extends Controller
                                                             }
                                                         }
                                                         $model2->attribute_id = $attribute_id2;
-                                                        $model2->save();
+                                                        if ($model2->save()){
+                                                            //this only for Magento 2 from version 0.74.0 - beta 12
+                                                            $attribute_code1 = MigrateSteps::getMage1AttributeCode($model->attribute_id);
+                                                            if (in_array($attribute_code1, $needed_update_attr)){
+                                                                if ($customer2->hasAttribute($attribute_code1)){
+                                                                    $customer2->$attribute_code1 = $model->value;
+                                                                    $customer2->update();
+                                                                }
+                                                            }
+                                                        } else {
+                                                            $errors[] = get_class($model2).": ".MigrateSteps::getStringErrors($model2->getErrors());
+                                                        }
                                                     }
                                                 }
                                             }
@@ -1937,7 +1971,18 @@ class MigrateController extends Controller
                                                             }
                                                         }
                                                         $model2->attribute_id = $attribute_id2;
-                                                        $model2->save();
+                                                        if ($model2->save()){
+                                                            //this only for Magento 2 from version 0.74.0 - beta 12
+                                                            $attribute_code1 = MigrateSteps::getMage1AttributeCode($model->attribute_id);
+                                                            if (in_array($attribute_code1, $needed_update_attr)){
+                                                                if ($customer2->hasAttribute($attribute_code1)){
+                                                                    $customer2->$attribute_code1 = $model->value;
+                                                                    $customer2->update();
+                                                                }
+                                                            }
+                                                        } else {
+                                                            $errors[] = get_class($model2).": ".MigrateSteps::getStringErrors($model2->getErrors());
+                                                        }
                                                     }
                                                 }
                                             }
@@ -1968,12 +2013,39 @@ class MigrateController extends Controller
                                                                     $customer2->update();
                                                                 }
                                                             }
+                                                        } else {
+                                                            $errors[] = get_class($model2).": ".MigrateSteps::getStringErrors($model2->getErrors());
                                                         }
                                                     }
                                                 }
                                             }
 
                                             //customer_address_entity
+                                            //Some attributes was move from children tables to main table
+                                            //So we need to do this
+                                            //needed_update_attr.
+                                            $needed_update_attr2 = array(
+                                                'country_id',
+                                                'firstname',
+                                                'lastname',
+                                                'middlename',
+                                                'street',
+                                                'telephone',
+                                                'city',
+                                                'fax',
+                                                'company',
+                                                'country_id',
+                                                'postcode',
+                                                'prefix',
+                                                'region',
+                                                'region_id',
+                                                'suffix',
+                                                'vat_id',
+                                                'vat_is_valid',
+                                                'vat_request_date',
+                                                'vat_request_id',
+                                                'vat_request_success'
+                                            );
                                             $address_entities = Mage1CustomerAddressEntity::model()->findAll("parent_id = {$customer->entity_id}");
                                             if ($address_entities){
                                                 foreach($address_entities as $address_entity){
@@ -1983,6 +2055,15 @@ class MigrateController extends Controller
                                                             $address_entity2->$key = $address_entity->$key;
                                                         }
                                                     }
+                                                    //some fields is new in Magento2 and required at this table, so we need to do this
+                                                    //and we will update correct value for them later
+                                                    $address_entity2->country_id = '0';
+                                                    $address_entity2->firstname = 'unknown';
+                                                    $address_entity2->lastname = 'unknown';
+                                                    $address_entity2->street = 'unknown';
+                                                    $address_entity2->telephone = 'unknown';
+                                                    $address_entity2->city = 'unknown';
+                                                    
                                                     if ($address_entity2->save()){
                                                         //customer_address_entity_datetime
                                                         $models = Mage1CustomerAddressEntityDatetime::model()->findAll("entity_id = $address_entity2->entity_id");
@@ -1998,7 +2079,18 @@ class MigrateController extends Controller
                                                                         }
                                                                     }
                                                                     $model2->attribute_id = $attribute_id2;
-                                                                    $model2->save();
+                                                                    if ($model2->save()){
+                                                                        //some attributes was move to main table, so we need to do this
+                                                                        $attribute_code1 = MigrateSteps::getMage1AttributeCode($model->attribute_id);
+                                                                        if (in_array($attribute_code1, $needed_update_attr2)){
+                                                                            if ($address_entity2->hasAttribute($attribute_code1)){
+                                                                                $address_entity2->$attribute_code1 = $model->value;
+                                                                                $address_entity2->update();
+                                                                            }
+                                                                        }
+                                                                    } else {
+                                                                        $errors[] = get_class($model2).": ".MigrateSteps::getStringErrors($model2->getErrors());
+                                                                    }
                                                                 }
                                                             }
                                                         }
@@ -2017,7 +2109,18 @@ class MigrateController extends Controller
                                                                         }
                                                                     }
                                                                     $model2->attribute_id = $attribute_id2;
-                                                                    $model2->save();
+                                                                    if ($model2->save()){
+                                                                        //some attributes was move to main table, so we need to do this
+                                                                        $attribute_code1 = MigrateSteps::getMage1AttributeCode($model->attribute_id);
+                                                                        if (in_array($attribute_code1, $needed_update_attr2)){
+                                                                            if ($address_entity2->hasAttribute($attribute_code1)){
+                                                                                $address_entity2->$attribute_code1 = $model->value;
+                                                                                $address_entity2->update();
+                                                                            }
+                                                                        }
+                                                                    } else {
+                                                                        $errors[] = get_class($model2).": ".MigrateSteps::getStringErrors($model2->getErrors());
+                                                                    }
                                                                 }
                                                             }
                                                         }
@@ -2036,7 +2139,18 @@ class MigrateController extends Controller
                                                                         }
                                                                     }
                                                                     $model2->attribute_id = $attribute_id2;
-                                                                    $model2->save();
+                                                                    if ($model2->save()){
+                                                                        //some attributes was move to main table, so we need to do this
+                                                                        $attribute_code1 = MigrateSteps::getMage1AttributeCode($model->attribute_id);
+                                                                        if (in_array($attribute_code1, $needed_update_attr2)){
+                                                                            if ($address_entity2->hasAttribute($attribute_code1)){
+                                                                                $address_entity2->$attribute_code1 = $model->value;
+                                                                                $address_entity2->update();
+                                                                            }
+                                                                        }
+                                                                    } else {
+                                                                        $errors[] = get_class($model2).": ".MigrateSteps::getStringErrors($model2->getErrors());
+                                                                    }
                                                                 }
                                                             }
                                                         }
@@ -2054,7 +2168,18 @@ class MigrateController extends Controller
                                                                         }
                                                                     }
                                                                     $model2->attribute_id = $attribute_id2;
-                                                                    $model2->save();
+                                                                    if ($model2->save()){
+                                                                        //some attributes was move to main table, so we need to do this
+                                                                        $attribute_code1 = MigrateSteps::getMage1AttributeCode($model->attribute_id);
+                                                                        if (in_array($attribute_code1, $needed_update_attr2)){
+                                                                            if ($address_entity2->hasAttribute($attribute_code1)){
+                                                                                $address_entity2->$attribute_code1 = $model->value;
+                                                                                $address_entity2->update();
+                                                                            }
+                                                                        }
+                                                                    } else {
+                                                                        $errors[] = get_class($model2).": ".MigrateSteps::getStringErrors($model2->getErrors());
+                                                                    }
                                                                 }
                                                             }
                                                         }
@@ -2072,13 +2197,28 @@ class MigrateController extends Controller
                                                                         }
                                                                     }
                                                                     $model2->attribute_id = $attribute_id2;
-                                                                    $model2->save();
+                                                                    if ($model2->save()){
+                                                                        //some attributes was move to main table, so we need to do this
+                                                                        $attribute_code1 = MigrateSteps::getMage1AttributeCode($model->attribute_id);
+                                                                        if (in_array($attribute_code1, $needed_update_attr2)){
+                                                                            if ($address_entity2->hasAttribute($attribute_code1)){
+                                                                                $address_entity2->$attribute_code1 = $model->value;
+                                                                                $address_entity2->update();
+                                                                            }
+                                                                        }
+                                                                    } else {
+                                                                        $errors[] = get_class($model2).": ".MigrateSteps::getStringErrors($model2->getErrors());
+                                                                    }
                                                                 }
                                                             }
                                                         }
+                                                    } else {
+                                                        $errors[] = get_class($address_entity2).": ".MigrateSteps::getStringErrors($address_entity2->getErrors());
                                                     }
                                                 }
                                             }//end a customer entity address
+                                        } else {
+                                            $errors[] = get_class($customer2).": ".MigrateSteps::getStringErrors($customer2->getErrors());
                                         } //and save a customer entity
                                     }
                                 }
@@ -2113,6 +2253,12 @@ class MigrateController extends Controller
                         $message = Yii::t('frontend', $message, array('%s1'=> sizeof($migrated_customer_group_ids), '%s2' => sizeof($migrated_customer_ids)));
                         Yii::app()->user->setFlash('success', $message);
                     }
+                }
+                
+                //alert errors if exists
+                if ($errors){
+                    $strErrors = implode('<br/>', $errors);
+                    Yii::app()->user->setFlash('error', $strErrors);
                 }
             }//end post request
             else{
@@ -2733,7 +2879,7 @@ class MigrateController extends Controller
                                                 $model2->updated_at = null;
                                                 $model2->customer_name = $model->shipping_name;
                                                 if (!$model2->save()){
-                                                    $errors[] = MigrateSteps::getStringErrors($model2->getErrors());
+                                                    $errors[] = get_class($model2).": ".MigrateSteps::getStringErrors($model2->getErrors());
                                                 }
                                             }
                                         }
@@ -2748,7 +2894,7 @@ class MigrateController extends Controller
                                                     }
                                                 }
                                                 if (!$model2->save()){
-                                                    $errors[] = MigrateSteps::getStringErrors($model2->getErrors());
+                                                    $errors[] = get_class($model2).": ".MigrateSteps::getStringErrors($model2->getErrors());
                                                 }
                                             }
                                         }
@@ -2763,7 +2909,7 @@ class MigrateController extends Controller
                                                     }
                                                 }
                                                 if (!$model2->save()){
-                                                    $errors[] = MigrateSteps::getStringErrors($model2->getErrors());
+                                                    $errors[] = get_class($model2).": ".MigrateSteps::getStringErrors($model2->getErrors());
                                                 }
                                             }
                                         }
@@ -2778,7 +2924,7 @@ class MigrateController extends Controller
                                                     }
                                                 }
                                                 if (!$model2->save()){
-                                                    $errors[] = MigrateSteps::getStringErrors($model2->getErrors());
+                                                    $errors[] = get_class($model2).": ".MigrateSteps::getStringErrors($model2->getErrors());
                                                 }
                                             }
                                         }
@@ -2798,7 +2944,7 @@ class MigrateController extends Controller
                                     }
                                     $model2->store_id = MigrateSteps::getMage2StoreId($model->store_id);
                                     if (!$model2->save()){
-                                        $errors[] = MigrateSteps::getStringErrors($model2->getErrors());
+                                        $errors[] = get_class($model2).": ".MigrateSteps::getStringErrors($model2->getErrors());
                                     }
                                 }
                             }
@@ -2815,7 +2961,7 @@ class MigrateController extends Controller
                                     }
                                     $model2->store_id = MigrateSteps::getMage2StoreId($model->store_id);
                                     if (!$model2->save()){
-                                        $errors[] = MigrateSteps::getStringErrors($model2->getErrors());
+                                        $errors[] = get_class($model2).": ".MigrateSteps::getStringErrors($model2->getErrors());
                                     }
                                 }
                             }
@@ -2861,7 +3007,7 @@ class MigrateController extends Controller
                                                 $model2->updated_at = null;
                                                 $model2->customer_name = $model->billing_name;
                                                 if (!$model2->save()){
-                                                    $errors[] = MigrateSteps::getStringErrors($model2->getErrors());
+                                                    $errors[] = get_class($model2).": ".MigrateSteps::getStringErrors($model2->getErrors());
                                                 }
                                             }
                                         }
@@ -2886,7 +3032,7 @@ class MigrateController extends Controller
                                                 //this field was not exists in Magento1
                                                 $model2->tax_ratio = null;
                                                 if (!$model2->save()){
-                                                    $errors[] = MigrateSteps::getStringErrors($model2->getErrors());
+                                                    $errors[] = get_class($model2).": ".MigrateSteps::getStringErrors($model2->getErrors());
                                                 }
                                             }
                                         }
@@ -2901,7 +3047,7 @@ class MigrateController extends Controller
                                                     }
                                                 }
                                                 if (!$model2->save()){
-                                                    $errors[] = MigrateSteps::getStringErrors($model2->getErrors());
+                                                    $errors[] = get_class($model2).": ".MigrateSteps::getStringErrors($model2->getErrors());
                                                 }
                                             }
                                         }
