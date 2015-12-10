@@ -23,7 +23,7 @@ Follow [Installation guide](http://devdocs.magento.com/guides/v2.0/install-gde/i
 
 ### How To Install:
 - Install via Composer: In your terminal window, go to your magento2 webroot folder and run bellow command:
-    `composer require ubertheme/module-ubdatamigration`
+    + `composer require ubertheme/module-ubdatamigration`
 - Example: 
 ![load module](http://i.prntscr.com/adb0c005b4e141088bd96c1c61d9f7c7.png)
 - Enable the module: In your terminal window run bellow commands:
