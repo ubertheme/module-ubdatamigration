@@ -172,39 +172,39 @@ class MigrateController extends Controller
         } else {
             if ($step->status == MigrateSteps::STATUS_NOT_DONE) {
                 //auto load database 1 settings if exists
-                $configFilePath = Yii::app()->basePath ."/../../app/etc/local.xml";
-                if (file_exists($configFilePath)){
-                    $configData = simplexml_load_file($configFilePath);
-                    $settings = (object)json_decode($step->migrated_data);
-                    $settings->mg1_host = $configData->global->resources->default_setup->connection->host;
-                    $settings->mg1_db_user = $configData->global->resources->default_setup->connection->username;
-                    $settings->mg1_db_pass = $configData->global->resources->default_setup->connection->password;
-                    $settings->mg1_db_name = $configData->global->resources->default_setup->connection->dbname;
-                    $settings->mg1_db_prefix = $configData->global->resources->db->table_prefix;
-                    
-                    $mageFilename = Yii::app()->basePath ."/../../app/Mage.php";
-                    require_once $mageFilename;
-                    $mageVersion = Mage::getVersionInfo();
-                    if ($mageVersion['minor'] == '6'){
-                        $settings->mg1_version = 'mage16x';
-                    } elseif ($mageVersion['minor'] == '7'){
-                        $settings->mg1_version = 'mage17x';
-                    } elseif ($mageVersion['minor'] == '8'){
-                        $settings->mg1_version = 'mage18x';
-                    } else {
-                        $settings->mg1_version = 'mage19x';
-                    }
-                }
+//                $configFilePath = Yii::app()->basePath ."/../../app/etc/local.xml";
+//                if (file_exists($configFilePath)){
+//                    $configData = simplexml_load_file($configFilePath);
+//                    $settings = (object)json_decode($step->migrated_data);
+//                    $settings->mg1_host = $configData->global->resources->default_setup->connection->host;
+//                    $settings->mg1_db_user = $configData->global->resources->default_setup->connection->username;
+//                    $settings->mg1_db_pass = $configData->global->resources->default_setup->connection->password;
+//                    $settings->mg1_db_name = $configData->global->resources->default_setup->connection->dbname;
+//                    $settings->mg1_db_prefix = $configData->global->resources->db->table_prefix;
+//
+//                    $mageFilename = Yii::app()->basePath ."/../../app/Mage.php";
+//                    require_once $mageFilename;
+//                    $mageVersion = Mage::getVersionInfo();
+//                    if ($mageVersion['minor'] == '6'){
+//                        $settings->mg1_version = 'mage16x';
+//                    } elseif ($mageVersion['minor'] == '7'){
+//                        $settings->mg1_version = 'mage17x';
+//                    } elseif ($mageVersion['minor'] == '8'){
+//                        $settings->mg1_version = 'mage18x';
+//                    } else {
+//                        $settings->mg1_version = 'mage19x';
+//                    }
+//                }
                 //auto load database 2 settings if exists
                 $configFilePath = Yii::app()->basePath ."/../../../app/etc/env.php";
                 if (file_exists($configFilePath)){
                     $configData = require $configFilePath;
                     $settings = (object)json_decode($step->migrated_data);
-                    $settings->mg2_host = $configData['db']['connection']['default']['host'];
-                    $settings->mg2_db_user = $configData['db']['connection']['default']['username'];
-                    $settings->mg2_db_pass = $configData['db']['connection']['default']['password'];
-                    $settings->mg2_db_name = $configData['db']['connection']['default']['dbname'];
-                    $settings->mg2_db_prefix = $configData['db']['table_prefix'];
+                    $settings->mg2_host = (isset($configData['db']['connection']['default']['host'])) ? $configData['db']['connection']['default']['host'] : '';
+                    $settings->mg2_db_user = (isset($configData['db']['connection']['default']['username'])) ? $configData['db']['connection']['default']['username'] : '';
+                    $settings->mg2_db_pass = (isset($configData['db']['connection']['default']['password'])) ? $configData['db']['connection']['default']['password'] : '';
+                    $settings->mg2_db_name = (isset($configData['db']['connection']['default']['dbname'])) ? $configData['db']['connection']['default']['dbname'] : '';
+                    $settings->mg2_db_prefix = (isset($configData['db']['table_prefix'])) ? $configData['db']['table_prefix'] : '';
                 }
             }
         }

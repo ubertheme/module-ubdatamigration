@@ -45,8 +45,11 @@ class Index extends \Magento\Backend\App\Action
             $pubDir = $this->_objectManager->get('Magento\Framework\Filesystem')->getDirectoryRead(DirectoryList::PUB);
             $toolDir = $pubDir->getAbsolutePath('ub-tool/');
             $helper = $this->_objectManager->get('Ubertheme\Ubdatamigration\Helper\File');
+            //delete old source of tool
+            $helper->rrmdir($toolDir);
+            //copy new source of this tool
             $helper->xcopy($sourceDir, $toolDir, 0775);
-            //removre flag update code
+            //remove flag update code
             unlink($sourceDir.'update.flag');
         }
         
