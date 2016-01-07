@@ -2399,6 +2399,9 @@ class MigrateController extends Controller
                                         if ( in_array($key, array('store_name', 'shipping_method', 'x_forwarded_for')) && strlen($val) > 32) {
                                             $val = substr($val, 0, 32);
                                         }
+                                        if ( in_array($key, array('applied_rule_ids')) && strlen($val) > 128) {
+                                            $val = substr($val, 0, 128);
+                                        }
                                         $sales_order2->$key = $val;
                                     }
                                 }
@@ -3560,7 +3563,7 @@ class MigrateController extends Controller
             );
 
             //variables to log
-            $migrated_object_ids = array();
+            $migrated_object_ids = $migrated_tax_ids = array();
             $migrated_tax_rule_ids = $migrated_tax_rate_ids = $migrated_catalog_rule_ids = array();
 
             if (Yii::app()->request->isPostRequest && $step->status == MigrateSteps::STATUS_NOT_DONE){
