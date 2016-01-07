@@ -1,6 +1,8 @@
 # module-ubdatamigration - Magento 2 Data Migration
 >This is a Magento 2 module, allows migrate some important data from Magento 1.x to Magento 2.x
 
+[![Latest Stable Version](https://poser.pugx.org/ubertheme/module-ubdatamigration/v/stable)](https://packagist.org/packages/ubertheme/module-ubdatamigration) [![Total Downloads](https://poser.pugx.org/ubertheme/module-ubdatamigration/downloads)](https://packagist.org/packages/ubertheme/module-ubdatamigration) [![Latest Unstable Version](https://poser.pugx.org/ubertheme/module-ubdatamigration/v/unstable)](https://packagist.org/packages/ubertheme/module-ubdatamigration) [![License](https://poser.pugx.org/ubertheme/module-ubdatamigration/license)](https://packagist.org/packages/ubertheme/module-ubdatamigration)
+
 ### Allow Features:
 + [x] Migrate Web sites, Stores, Store views
 + [x] Migrate Attribute Sets, Attribute Groups, Attributes
