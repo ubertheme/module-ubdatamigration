@@ -19,9 +19,10 @@
 ### Author: [UberTheme](http://www.ubertheme.com)
 
 ### Prepare (precondition):
-Install a Magento 2 fresh website (without data sample)
++ Install a Magento 2 fresh website (without data sample)
 Download Magento Community Edition 2.0 from below link: https://www.magentocommerce.com/download
 Follow [Installation guide](http://devdocs.magento.com/guides/v2.0/install-gde/install-quick-ref.html) to Install a Magento 2 fresh website
++ Enable the **[php sqlite](http://php.net/manual/en/sqlite.installation.php)** in your server (required)
 
 ### How To Install:
 - Install via Composer: In your terminal window, go to your magento2 webroot folder and run bellow command:
