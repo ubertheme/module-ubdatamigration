@@ -23,18 +23,18 @@
 Download Magento Community Edition 2.0 from below link: https://www.magentocommerce.com/download
 Follow [Installation guide](http://devdocs.magento.com/guides/v2.0/install-gde/install-quick-ref.html) to Install a Magento 2 fresh website
 + Enable the **[php sqlite](http://php.net/manual/en/sqlite.installation.php)** in your server (required)
++ Make write permission for `pub` folder at path `PATH_YOUR_MAGENTO_2/pub`
 
 ### How To Install:
 - Install via Composer: In your terminal window, go to your magento2 webroot folder and run bellow command:
-    + `composer require ubertheme/module-ubdatamigration`
++ `composer require ubertheme/module-ubdatamigration`
 - Example: 
 ![load module](http://i.prntscr.com/adb0c005b4e141088bd96c1c61d9f7c7.png)
 - Enable the module: In your terminal window run bellow commands:
-    + `php -f PATH_YOUR_MAGENTO_2/bin/magento module:enable --clear-static-content Ubertheme_Ubdatamigration`
-    + `php -f PATH_YOUR_MAGENTO_2/bin/magento setup:upgrade`
++ `php -f PATH_YOUR_MAGENTO_2/bin/magento module:enable --clear-static-content Ubertheme_Ubdatamigration`
++ `php -f PATH_YOUR_MAGENTO_2/bin/magento setup:upgrade`
 - Examples:
 ![enable module](http://i.imgur.com/ksW98w8.png)
-- Make write permission for `pub` folder at path `PATH_YOUR_MAGENTO_2/pub`
 
 ### How To Use:
 
