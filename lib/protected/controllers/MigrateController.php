@@ -2,7 +2,7 @@
 
 class MigrateController extends Controller
 {
-	public $layout = '2column_left';
+    public $layout = '2column_left';
 
     protected function beforeAction($action) {
 
@@ -86,14 +86,14 @@ class MigrateController extends Controller
         }
     }
 
-	/**
-	 * Displays the index page
-	 */
-	public function actionIndex()
-	{
+    /**
+     * Displays the index page
+     */
+    public function actionIndex()
+    {
         $nextStep = MigrateSteps::getNextSteps();
-		$this->redirect(array($nextStep));
-	}
+        $this->redirect(array($nextStep));
+    }
 
     /**
      * Database settings
@@ -212,7 +212,7 @@ class MigrateController extends Controller
         if (!isset($settings)){
             $settings = (object)json_decode($step->migrated_data);
         }
-        
+
         $assign_data = array(
             'step' => $step,
             'settings' => $settings
@@ -563,7 +563,7 @@ class MigrateController extends Controller
                                     $catalog_eav_attribute2->is_required_in_admin_store = 0;
                                     //this not take because was changed in magento2
                                     $catalog_eav_attribute2->frontend_input_renderer = null;
-                                } 
+                                }
                                 else{
 //                                    //update settings values
 //                                    $catalog_eav_attribute2->is_global = $catalog_eav_attribute->is_global;
@@ -637,8 +637,8 @@ class MigrateController extends Controller
 
                         $message = "Migrated successfully. Total Attribute Sets: %s1, Total Attribute Groups: %s2, Total Attributes: %s3";
                         $message = Yii::t('frontend', $message, array('%s1'=> sizeof($migrated_attribute_set_ids),
-                            '%s2'=> sizeof($migrated_attribute_group_ids),
-                            '%s3' => sizeof($migrated_attribute_ids))
+                                '%s2'=> sizeof($migrated_attribute_group_ids),
+                                '%s3' => sizeof($migrated_attribute_ids))
                         );
                         Yii::app()->user->setFlash('success', $message);
                     }
@@ -679,7 +679,7 @@ class MigrateController extends Controller
 
             //get all categories from magento1 with level > 0
             //$categories = Mage1CatalogCategoryEntity::model()->findAll("level > 0");
-            
+
             //get all categories from magento1
             $categories = Mage1CatalogCategoryEntity::model()->findAll();
 
@@ -2063,7 +2063,7 @@ class MigrateController extends Controller
                                                     $address_entity2->street = 'unknown';
                                                     $address_entity2->telephone = 'unknown';
                                                     $address_entity2->city = 'unknown';
-                                                    
+
                                                     if ($address_entity2->save()){
                                                         //customer_address_entity_datetime
                                                         $models = Mage1CustomerAddressEntityDatetime::model()->findAll("entity_id = $address_entity2->entity_id");
@@ -2254,7 +2254,7 @@ class MigrateController extends Controller
                         Yii::app()->user->setFlash('success', $message);
                     }
                 }
-                
+
                 //alert errors if exists
                 if ($errors){
                     $strErrors = implode('<br/>', $errors);
@@ -2691,7 +2691,7 @@ class MigrateController extends Controller
                                     }
                                 }
                             }
-                            
+
                             //sales_refunded_aggregated
                             $condition = "store_id IN ({$str_store_ids}) OR store_id IS NULL";
                             $models = Mage1SalesRefundedAggregated::model()->findAll($condition);
@@ -2722,7 +2722,7 @@ class MigrateController extends Controller
                                     $model2->save();
                                 }
                             }
-                            
+
                             $migrated_sales_object_ids[] = 'payment';
                         } else {
                             Yii::app()->user->setFlash('note', Yii::t('frontend', "Before migrate the Sales Payments, you have to migrate the Sales Orders first."));
@@ -2807,7 +2807,7 @@ class MigrateController extends Controller
                                         }
                                     }
                                 }
-                                
+
                                 //sales_invoiced_aggregated
                                 $condition = "store_id IN ({$str_store_ids}) OR store_id IS NULL";
                                 $models = Mage1SalesInvoicedAggregated::model()->findAll($condition);
@@ -2839,8 +2839,8 @@ class MigrateController extends Controller
                                     }
                                 }
                             }
-                            
-                            $migrated_sales_object_ids[] = 'invoice';    
+
+                            $migrated_sales_object_ids[] = 'invoice';
                         } else {
                             Yii::app()->user->setFlash('note', Yii::t('frontend', "Before migrate the Sales Invoices, you have to migrate the Sales Orders first."));
                         }
@@ -3254,7 +3254,7 @@ class MigrateController extends Controller
                     } else {
                         $step->status = MigrateSteps::STATUS_NOT_DONE;
                     }
-                    
+
                     $step->migrated_data = json_encode(array(
                         'order_statuses' => $migrated_order_statuses,
                         'sales_object_ids' => $migrated_sales_object_ids,
@@ -3307,7 +3307,7 @@ class MigrateController extends Controller
                         Yii::app()->user->setFlash('success', $message);
                     }
                 }
-                
+
                 //alert errors if exists
                 if ($errors){
                     $strErrors = implode('<br/>', $errors);
@@ -3913,7 +3913,7 @@ class MigrateController extends Controller
 
             //delete url related data in url_rewrite table and catalog_url_rewrite_product_category table
             Mage2UrlRewrite::model()->deleteAll("entity_type = 'product'");
-            
+
             //flush cached
             Yii::app()->cache->flush();
 
@@ -3945,7 +3945,7 @@ class MigrateController extends Controller
                     $step->status = MigrateSteps::STATUS_NOT_DONE;
                     $step->migrated_data = null;
                     $step->update();
-                    
+
                     //flush cached
                     Yii::app()->cache->flush();
                 }
