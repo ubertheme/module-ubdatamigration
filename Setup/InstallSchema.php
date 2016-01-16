@@ -5,6 +5,7 @@
 
 namespace Ubertheme\Ubdatamigration\Setup;
 
+use Magento\Framework\App\Filesystem\DirectoryList;
 use Magento\Framework\Setup\InstallSchemaInterface;
 use Magento\Framework\Setup\ModuleContextInterface;
 use Magento\Framework\Setup\SchemaSetupInterface;
