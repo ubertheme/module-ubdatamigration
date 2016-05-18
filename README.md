@@ -1,6 +1,8 @@
 # module-ubdatamigration - Magento 2 Data Migration
 >This is a Magento 2 module, allows migrate some important data from Magento 1.x to Magento 2.x
 
+> May 17, 2016 Update: We decided to upgrade our free migration tool to a premium version — [UB Data Migration Pro](https://www.ubertheme.com/magento-news/magento-2-migration-tool-and-migration-service/) to provide a better, stable and more feature-rich solution for Magento 2 migration. Check out this 9-minute video to learn more about how this new migration tool can help with Magento 2 migration.
+
 [![Latest Stable Version](https://poser.pugx.org/ubertheme/module-ubdatamigration/v/stable)](https://packagist.org/packages/ubertheme/module-ubdatamigration) [![Total Downloads](https://poser.pugx.org/ubertheme/module-ubdatamigration/downloads)](https://packagist.org/packages/ubertheme/module-ubdatamigration) [![Latest Unstable Version](https://poser.pugx.org/ubertheme/module-ubdatamigration/v/unstable)](https://packagist.org/packages/ubertheme/module-ubdatamigration) [![License](https://poser.pugx.org/ubertheme/module-ubdatamigration/license)](https://packagist.org/packages/ubertheme/module-ubdatamigration)
 
 ### Allow Features:
