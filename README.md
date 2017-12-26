@@ -13,7 +13,7 @@
 >Check out the 14-minute video guide below to learn more about the V3: 
 <p style="text-align: center;">
 <a href="http://www.youtube.com/watch?feature=player_embedded&v=R4UBLe2kf-I
-" target="_blank"><img src="http://ubertheme.s3.amazonaws.com/newsletter/2016/UB_Migration_video.png" 
+" target="_blank"><img src="http://static.ubertheme.com/newsletter/2016/UB_Migration_video.png" 
 alt="UB Data Migration Pro V3" width="560" height="315" border="10" /></a>
 </p>
 
