@@ -1,11 +1,9 @@
 # module-ubdatamigration - Magento 2 Data Migration
 >This is a Magento 2 module, allows migrate some important data from Magento 1.x to Magento 2.x
 
-> #### Dec 13, 2017: 
-[UB Data Migration Pro 3.1.2](https://goo.gl/nTvSxF) released, fully compatible with the latest Magento 2.2.2
+> #### Dec 13, 2017: [UB Data Migration Pro 3.1.2](https://goo.gl/nTvSxF) released, fully compatible with the latest Magento 2.2.2
 
-> #### Sept 15, 2017: 
-UB Data Migration Pro 3.1.0 arrived, with All-New Intuitive Dashboard 
+> #### Sept 15, 2017: UB Data Migration Pro 3.1.0 arrived, with All-New Intuitive Dashboard 
 
 > ####Oct 18, 2016 Update: 
 [UB Data Migration Pro V3](http://bit.ly/ub-data-migration-v3) Released - a complete overhaul compared to its older sibling. Below are some of the most striking new features in the V3:
