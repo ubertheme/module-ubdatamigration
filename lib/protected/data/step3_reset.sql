@@ -112,7 +112,7 @@ INSERT INTO `#__eav_attribute` VALUES ('83', '4', 'meta_description', null, null
 INSERT INTO `#__eav_attribute` VALUES ('84', '4', 'image', null, null, 'varchar', null, 'Magento\\Catalog\\Model\\Product\\Attribute\\Frontend\\Image', 'media_image', 'Base Image', null, null, '0', '0', null, '0', null);
 INSERT INTO `#__eav_attribute` VALUES ('85', '4', 'small_image', null, null, 'varchar', null, 'Magento\\Catalog\\Model\\Product\\Attribute\\Frontend\\Image', 'media_image', 'Small Image', null, null, '0', '0', null, '0', null);
 INSERT INTO `#__eav_attribute` VALUES ('86', '4', 'thumbnail', null, null, 'varchar', null, 'Magento\\Catalog\\Model\\Product\\Attribute\\Frontend\\Image', 'media_image', 'Thumbnail', null, null, '0', '0', null, '0', null);
-INSERT INTO `#__eav_attribute` VALUES ('87', '4', 'media_gallery', null, 'Magento\\Catalog\\Model\\Product\\Attribute\\Backend\\Media', 'varchar', null, null, 'gallery', 'Media Gallery', null, null, '0', '0', null, '0', null);
+INSERT INTO `#__eav_attribute` VALUES ('87', '4', 'media_gallery', null, null, 'static', null, null, 'gallery', 'Media Gallery', null, null, '0', '0', null, '0', null);
 INSERT INTO `#__eav_attribute` VALUES ('88', '4', 'old_id', null, null, 'int', null, null, 'text', null, null, null, '0', '0', null, '0', null);
 INSERT INTO `#__eav_attribute` VALUES ('89', '4', 'tier_price', null, 'Magento\\Catalog\\Model\\Product\\Attribute\\Backend\\Tierprice', 'decimal', null, null, 'text', 'Tier Price', null, null, '0', '0', null, '0', null);
 INSERT INTO `#__eav_attribute` VALUES ('90', '4', 'color', null, null, 'int', null, null, 'select', 'Color', null, null, '0', '1', null, '0', null);
